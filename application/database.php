@@ -19,7 +19,7 @@ return [
     // 用户名
     'username'        => 'sql154_8_139_13',
     // 密码
-    'password'        => 'root',
+    'password'        => 'xWG4pNEeG6',
     // 端口
     'hostport'        => '3306',
     // 连接dsn

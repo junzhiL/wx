@@ -9,6 +9,14 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+use think\Route;
+
+Route::rule('news/:id', 'api/news/read');
+
+Route::rule('weather/:weather_code', 'api/weather/read');
+
+Route::rule('city/:county_name', 'api/weather/read');
+
 return [
     '__pattern__' => [
         'name' => '\w+',

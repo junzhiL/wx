@@ -75,13 +75,13 @@ class wechatCallbackapiTest
             $str_key = mb_substr($keyword,0,-2,"UTF-8");
             if($str == '天气' && !empty($str_key)){
                 $data = $this->weather($str_key);
-                if(empty($data->weatherinfo)){
+                if(empty($data)){
                     $contentStr = "抱歉，没有查到\"".$str_key."\"的天气信息！";
                 } else {
-                    $contentStr = "【".$data->weatherinfo->city."天气预报】\n"."2018年11月25日  20时发布"."\n\n实时天气\n"."晴 -3℃～10℃ 南风2级 轻度污染"."\n\n温馨提示："."温度较低，适宜穿风衣，注意做好保暖措施。今日轻度污染，适宜在室内运动"."\n\n明天\n"."晴 -2℃～10℃ 西南风4级 中度污染"."\n\n后天\n"."晴 -3℃～8℃ 北风4级 轻度污染";
+                    $contentStr = "【".$str_key."天气预报】\n".$data->data;
                 }
             } else {
-                $contentStr = "感谢您关注由柳俊志开发的微信天气预报公众号！！！";
+                $contentStr = "请按城市+天气格式输入";
             }
             $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
             echo $resultStr;
@@ -96,7 +96,7 @@ class wechatCallbackapiTest
         switch ($object->Event)
         {
             case "subscribe":
-                $contentStr = "感谢您关注由柳俊志开发的微信天气预报公众号！！！"."\n";
+                $contentStr = "感谢您关注柳俊志的天气预报";
                 break;
             default :
                 $contentStr = "Unknow Event: ".$object->Event;
@@ -124,8 +124,8 @@ class wechatCallbackapiTest
         include("weather_cityId.php");
         $c_name=$weather_cityId[$n];
         if(!empty($c_name)){
-            $json=file_get_contents("http://www.weather.com.cn/data/sk/".$c_name.".html");
-           return json_decode($json);
+            $json=file_get_contents("http://154.8.139.132/weather/".$c_name);
+            return json_decode($json);
         } else {
             return null;
         }
@@ -151,4 +151,4 @@ class wechatCallbackapiTest
     }
 }
 
-?>
+
