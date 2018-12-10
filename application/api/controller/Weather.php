@@ -16,7 +16,7 @@ class Weather extends Controller
             $code = 404;
         }
         $data = [
-            'code' => $weather_code,
+            'code' => $code,
             'data' => $data
             
         ];

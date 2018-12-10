@@ -3,21 +3,22 @@ namespace app\api\controller;
 
 use think\Controller;
 
-class Weather extends Controller
+class City extends Controller
 {
     public function read()
     {
         $county_name = input('county_name');
-        $model = model('Weather');
+        $model = model('City');
         $data = $model->getNews($county_name);
         if ($data) {
-            $city = '北京';
+           $code = 200;
         } else {
-            $city = 404;
+            $code = 404;
         }
         $data = [
-            'city' => $county_name,
+            'code' => $code,
             'data' => $data
+            
         ];
         return json($data);
     }

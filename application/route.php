@@ -15,7 +15,7 @@ Route::rule('news/:id', 'api/news/read');
 
 Route::rule('weather/:weather_code', 'api/weather/read');
 
-Route::rule('city/:county_name', 'api/weather/read');
+Route::rule('city/:county_name', 'api/city/read');
 
 return [
     '__pattern__' => [
